@@ -13,10 +13,10 @@ api_id = int(os.getenv("TG_API_ID"))
 api_hash = os.getenv("TG_API_HASH")
 string_session = os.getenv("TG_STRING_SESSION")
 
-source_group = '-1003293794239'
-destination_groups = ['@JK_HDSGIJ_HPUHSA_mfdgsdgjkhiuahs']
+source_group = '-1003086263056'
+destination_groups = ['@zxcmsnjzaoejndjcgiashfiuujasufbv']
 
-channel = "ᴍᴏᴏɴᴋɴɪɢʜᴛ | ᴘʀɪᴍᴇ ꜱᴇʀɪᴇꜱ"
+channel = "CONTENT 2.5"
 
 min_delay = 8
 max_delay = 15
@@ -191,3 +191,4 @@ try:
     client.loop.run_until_complete(forward_history())
 except KeyboardInterrupt:
     print("\n🛑 Bot stopped by user.")
+
