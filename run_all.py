@@ -18,6 +18,7 @@ CHAT_ID = os.getenv("TG_CHAT_ID")
 
 scripts = [
     "!! From laptop/moonknight series/moonseries.py"
+    "!! From laptop/BoB Movies/Brat.py"
 ]
 
 # ================= TELEGRAM =================
