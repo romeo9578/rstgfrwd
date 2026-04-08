@@ -13,10 +13,10 @@ api_id = int(os.getenv("TG_API_ID"))
 api_hash = os.getenv("TG_API_HASH")
 string_session = os.getenv("TG_STRING_SESSION")
 
-source_group = '-1002738732764'
+source_group = '-1003508688090'
 destination_groups = ['@JK_HDSGIJ_HPUHSA_mfdgsdgjkhiuahs']
 
-channel = "BoB Movies"
+channel = "Quality Content ❤️"
 
 min_delay = 8
 max_delay = 15
@@ -124,18 +124,37 @@ async def forward_history():
         should_forward_file = False
         send_text_only = False
 
-        # ✅ Case 1: Video files
-        if message.document and message.document.mime_type and \
-           message.document.mime_type.startswith("video"):
+        # ✅ Images
+        if message.photo:
             should_forward_file = True
 
-        # ✅ Case 2: Large archive parts (.zip, .001, etc.)
-        elif message.document and message.document.size and \
-             message.document.size > 200 * 1024 * 1024:
+        # ✅ Videos
+        elif message.video or (
+            message.document and message.document.mime_type and
+            message.document.mime_type.startswith("video")
+        ):
             should_forward_file = True
 
-        # ✅ Case 3: Text posts with links
-        elif message.text and "http" in message.text:
+        # ✅ PDF
+        elif message.document and message.document.mime_type == "application/pdf":
+            should_forward_file = True
+
+        # ✅ ZIP / RAR / 7z (mime types)
+        elif message.document and message.document.mime_type in [
+            "application/zip",
+            "application/x-zip-compressed",
+            "application/x-rar-compressed",
+            "application/octet-stream"
+        ]:
+            should_forward_file = True
+
+        # ✅ ZIP fallback via filename
+        elif message.document and message.file and message.file.name and \
+                message.file.name.lower().endswith(('.zip', '.rar', '.7z')):
+            should_forward_file = True
+
+        # ✅ Any text
+        elif message.text:
             send_text_only = True
 
         else:
@@ -146,29 +165,12 @@ async def forward_history():
                 await asyncio.sleep(random.uniform(min_delay, max_delay))
 
                 if should_forward_file:
-
-                    thumb_path = None
-
-                    # 🔥 Preserve thumbnail
-                    if getattr(message.document, "thumbs", None):
-                        try:
-                            largest_thumb = message.document.thumbs[-1]
-                            thumb_path = await client.download_media(largest_thumb)
-                        except Exception:
-                            thumb_path = None
-
                     await client.send_file(
                         dest,
-                        message.document,
-                        caption=message.text or '',
-                        thumb=thumb_path,
-                        supports_streaming=True
+                        message.media,
+                        caption=message.text or ''
                     )
-
-                    if thumb_path and os.path.exists(thumb_path):
-                        os.remove(thumb_path)
-
-                    print(f"✅ Sent file: {message.id}")
+                    print(f"✅ Sent media: {message.id}")
 
                 elif send_text_only:
                     await client.send_message(dest, message.text)
@@ -208,4 +210,3 @@ try:
     client.loop.run_until_complete(forward_history())
 except KeyboardInterrupt:
     print("\n🛑 Bot stopped by user.")
-
