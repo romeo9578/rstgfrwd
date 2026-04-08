@@ -13,7 +13,7 @@ api_id = int(os.getenv("TG_API_ID"))
 api_hash = os.getenv("TG_API_HASH")
 string_session = os.getenv("TG_STRING_SESSION")
 
-source_group = '-1003508688090'
+source_group = '-1003678231874'
 destination_groups = ['@jhfdsffgwegsfjhadsf63msxu23']
 
 channel = "Bratty sis"
