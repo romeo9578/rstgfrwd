@@ -14,9 +14,9 @@ api_hash = os.getenv("TG_API_HASH")
 string_session = os.getenv("TG_STRING_SESSION")
 
 source_group = '-1003508688090'
-destination_groups = ['@JK_HDSGIJ_HPUHSA_mfdgsdgjkhiuahs']
+destination_groups = ['@jhfdsffgwegsfjhadsf63msxu23']
 
-channel = "Quality Content ❤️"
+channel = "Bratty sis"
 
 min_delay = 8
 max_delay = 15
