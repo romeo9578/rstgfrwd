@@ -13,8 +13,8 @@ api_id = int(os.getenv("TG_API_ID"))
 api_hash = os.getenv("TG_API_HASH")
 string_session = os.getenv("TG_STRING_SESSION")
 
-source_group = '-1003508688090'
-destination_groups = ['@JK_HDSGIJ_HPUHSA_mfdgsdgjkhiuahs']
+source_group = '-1003527692507'
+destination_groups = ['@https://t.me/jhaDFTTYFYTEWQNBCXZMNHajgwfuy']
 
 channel = "UnratedHD"
 
